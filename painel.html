@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Raio-X das Escolas no RJ · Painel ao vivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04060c;--card:rgba(13,22,44,.62);--ink:#e8eefc;--muted:#9db0d4;--line:rgba(110,150,255,.22);--accent:#6ea0ff;--accent2:#2f5fe0;--glow:rgba(70,120,255,.45);--warm:#f0b95a;--track:rgba(120,160,255,.14);
+--serif:"Fraunces",Georgia,serif;--sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font:400 16px/1.55 var(--sans);position:relative;overflow-x:hidden;
+background:radial-gradient(900px 520px at 12% -8%,rgba(40,80,200,.38),transparent 62%),radial-gradient(700px 480px at 100% 8%,rgba(20,50,140,.34),transparent 60%),var(--bg)}
+body::before{content:"";position:absolute;left:50%;top:-140px;width:620px;height:620px;max-width:140vw;transform:translateX(-50%);border-radius:50%;
+background:radial-gradient(circle,rgba(90,140,255,.22),transparent 65%);filter:blur(30px);pointer-events:none;animation:pulso 7s ease-in-out infinite}
+@keyframes pulso{50%{opacity:.55}}
+.bar{position:relative;background:var(--warm);color:#1b2a2f;font-weight:600;font-size:14px;text-align:center;padding:8px 16px}
+.wrap{position:relative;max-width:820px;margin:0 auto;padding:0 20px 48px}
+.eyebrow{margin:40px 0 8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(30px,6vw,46px)/1.1 var(--serif);margin:0 0 12px;text-shadow:0 0 38px var(--glow)}
+.lead{color:var(--muted);margin:0 0 28px;max-width:60ch}
+.ctl,.kpi,li,.empty{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(160,190,255,.08) inset,0 10px 30px rgba(0,0,0,.35)}
+.ctl{display:flex;flex-wrap:wrap;gap:16px;align-items:end;border-radius:16px;padding:16px;margin-bottom:20px}
+.ctl label{display:flex;flex-direction:column;font-size:14px;font-weight:600;gap:6px}
+select,input{font:400 16px var(--sans);color:var(--ink);background:rgba(4,8,20,.8);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;min-height:44px}
+select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.kpi{flex:1 1 150px;border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font:700 30px var(--serif);color:#fff;text-shadow:0 0 22px var(--glow)}.kpi span{font-size:14px;color:var(--muted)}
+h2{font:700 24px var(--serif);margin:28px 0 4px}.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+li{border-radius:14px;padding:14px 16px;transition:border-color .2s,box-shadow .2s}
+li:hover{border-color:rgba(130,170,255,.5);box-shadow:0 1px 0 rgba(160,190,255,.1) inset,0 0 26px rgba(60,110,255,.28)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.dir{text-align:right}.ne{border:1px solid var(--warm);color:var(--warm);border-radius:99px;padding:0 10px;font-weight:600}.nome{font-weight:600}.det{font-weight:400;color:var(--muted);font-size:13px}.pct{font:700 20px var(--serif);color:#a9c4ff;text-shadow:0 0 16px var(--glow)}
+.track{height:10px;border-radius:99px;background:var(--track);margin:8px 0;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent2),#8fb4ff);box-shadow:0 0 14px var(--glow);transition:width .4s}
+.meta{font-size:14px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.tag{background:var(--warm);color:#1b2a2f;border-radius:99px;padding:1px 10px;font-weight:600;font-size:13px}
+.empty{border-style:dashed;border-radius:14px;padding:20px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}.fill,li{transition:none}}
+.status{font-size:14px;color:var(--muted);margin:0 0 18px}.status.erro{color:#ffb3a3}
+</style>
+</head>
+<body>
+<div class="bar">Projeto acadêmico do Senac. Dados de demonstração, não representam o estado.</div>
+<main class="wrap">
+  <p class="eyebrow">Painel ao vivo</p>
+  <h1>Raio-X das Escolas no RJ</h1>
+  <p class="lead">O que as pessoas estão relatando agora sobre a estrutura das escolas e universidades públicas. Este painel mostra só números agrupados: nenhuma resposta individual aparece aqui.</p>
+
+  <div class="ctl">
+    <label>Rede
+      <select id="rede"><option value="">Todas</option><option value="municipal">Municipal</option><option value="estadual">Estadual</option><option value="universidade">Universidade pública</option></select>
+    </label>
+    <label>Papel
+      <select id="papel"><option value="">Todos</option><option value="estudante">Estudante</option><option value="responsavel">Responsável</option><option value="professor">Professor(a)</option><option value="funcionario">Funcionário(a)</option><option value="morador">Morador(a) do entorno</option><option value="outro">Outro</option></select>
+    </label>
+    <label>Agrupar locais por
+      <select id="nivel"><option value="local">Local</option><option value="bairro" selected>Bairro</option><option value="subregiao">Sub-região</option><option value="regiao">Região</option></select>
+    </label>
+  </div>
+
+  <p class="status" id="status" role="status">Carregando os dados…</p>
+
+  <div class="kpis" aria-live="polite">
+    <div class="kpi"><b id="kTotal">–</b><span>respostas no filtro</span></div>
+    <div class="kpi"><b id="kItens">–</b><span>itens exibidos</span></div>
+  </div>
+
+  <h2>Itens de estrutura mais precários</h2>
+  <p class="sub">Porcentagem das notas deste item que são 1 ou 2, de 1 (péssimo) a 5 (ótimo). “Não existe” não entra nessa porcentagem: aparece à parte, porque um item que falta é um problema diferente de um item mal avaliado. Grupos com menos respostas que o mínimo ficam ocultos para proteger o anonimato.</p>
+  <ol id="lista" aria-live="polite"></ol>
+  <div id="vazio" class="empty" hidden>Ainda não há respostas suficientes para mostrar um item com esses filtros.</div>
+
+  <h2>Locais mais citados</h2>
+  <p class="sub">De onde vêm mais relatos. A porcentagem aqui é a média de notas 1 ou 2 em todos os itens avaliados no grupo, e não a de um item específico, por isso não se compara com a lista de itens acima. Comunidades somam ao seu bairro de referência. Mostrando até 15 grupos.</p>
+  <ol id="locais" aria-live="polite"></ol>
+  <div id="vazioLocais" class="empty" hidden>Nenhum grupo de locais atinge o mínimo de respostas com esses filtros.</div>
+</main>
+<script>
+(function(){
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbylWg-kMmnFkZRrMYkQcwNa1tjlJlz57iev04gg1-FCZAQmjGMuLdow2SuwrhNYqMY/exec";
+  var INTERVALO=10000;
+  var $=function(i){return document.getElementById(i)};
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function fmt(p){return p===null||p===undefined?'sem nota':String(p).replace('.',',')+'%'}
+  function hora(d){return d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+  function linha(ol,nome,detalhe,pct,partes,pequena,leg){
+    var li=el('li'),row=el('div','row'),nm=el('span','nome',nome);
+    if(detalhe){nm.appendChild(document.createElement('br'));nm.appendChild(el('small','det',detalhe))}
+    var dir=el('span','dir');dir.appendChild(el('span','pct',fmt(pct)));
+    if(leg){dir.appendChild(document.createElement('br'));dir.appendChild(el('small','det',leg))}
+    row.appendChild(nm);row.appendChild(dir);li.appendChild(row);
+    var tr=el('div','track');tr.setAttribute('aria-hidden','true');
+    var f=el('div','fill');f.style.width=(pct||0)+'%';tr.appendChild(f);li.appendChild(tr);
+    var m=el('div','meta');
+    partes.forEach(function(p){m.appendChild(el('span',/^Não existe/.test(p)?'ne':null,p))});
+    if(pequena)m.appendChild(el('span','tag','Amostra pequena'));
+    li.appendChild(m);ol.appendChild(li);
+  }
+  function desenhar(d){
+    var itens=d.itens||[],locais=d.locais||[];
+    $('kTotal').textContent=d.total;$('kItens').textContent=itens.length;
+    var ol=$('lista');ol.textContent='';$('vazio').hidden=itens.length>0;
+    itens.forEach(function(x){
+      var p=[x.n+' '+(x.n===1?'resposta com nota':'respostas com nota')];
+      if(x.naoExiste)p.push('Não existe: '+x.naoExiste+' ('+fmt(x.pctNaoExiste)+' de quem avaliou)');
+      linha(ol,x.nome,'',x.pctRuim,p,x.amostraPequena,'das notas deste item');
+    });
+    var lo=$('locais');lo.textContent='';$('vazioLocais').hidden=locais.length>0;
+    locais.forEach(function(g){
+      linha(lo,g.nome,g.detalhe,g.pctRuim,[g.respostas+' '+(g.respostas===1?'resposta':'respostas')],g.amostraPequena,'de todas as notas do grupo');
+    });
+  }
+  function status(txt,erro){var s=$('status');s.textContent=txt;s.className='status'+(erro?' erro':'')}
+  var carregando=false,pendente=false,ultimaHora=null;
+  function url(){
+    return ENDPOINT+'?acao=painel&rede='+encodeURIComponent($('rede').value)+'&papel='+encodeURIComponent($('papel').value)+'&nivel='+encodeURIComponent($('nivel').value);
+  }
+  function carregar(){
+    if(carregando){pendente=true;return}
+    carregando=true;
+    fetch(url()).then(function(r){return r.json()}).then(function(d){
+      if(!d||!d.ok)throw new Error('resposta invalida');
+      desenhar(d);ultimaHora=new Date();
+      status('Atualizado às '+hora(ultimaHora)+'. Atualiza sozinho a cada '+(INTERVALO/1000)+' segundos. Mínimo de '+d.minimo+' respostas por grupo.',false);
+    }).catch(function(){
+      status(ultimaHora?'Não foi possível atualizar agora. Mostrando os dados das '+hora(ultimaHora)+'. Tentando de novo…':'Não foi possível carregar os dados agora. Tentando de novo…',true);
+    }).then(function(){carregando=false;if(pendente){pendente=false;carregar()}});
+  }
+  ['rede','papel','nivel'].forEach(function(i){$(i).addEventListener('change',function(){
+    // Ao trocar o filtro, os números antigos saem da tela para não parecerem os do novo filtro.
+    ultimaHora=null;$('lista').textContent='';$('locais').textContent='';$('vazio').hidden=true;$('vazioLocais').hidden=true;
+    $('kTotal').textContent='–';$('kItens').textContent='–';status('Carregando os dados…',false);carregar();
+  })});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)carregar()});
+  setInterval(function(){if(!document.hidden)carregar()},INTERVALO);
+  carregar();
+})();
+</script>
+</body>
+</html>
